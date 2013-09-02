@@ -1,0 +1,64 @@
+/** 
+* CSS
+*
+* cascade & specificity: 
+* http://reference.sitepoint.com/css/specificity
+*
+*/
+
+
+body { 
+    margin:0; padding:0;
+    padding-top:3em; 
+    }
+
+
+section { 
+    margin:1em 20px; 
+    }
+
+header h1 {
+    margin:1em 20px;
+    }
+
+
+/**
+* Navigation 
+*
+*/
+
+nav {
+    padding:.5em 20px;
+    background:rgba(238,238,238,0.7);
+    width:100%;
+}
+    nav:hover { height:3em; }
+
+nav a { 
+    background:rgba(203,203,203,0.7);
+    padding:.5em 10px;
+    margin:2px 0;
+    color:#333;
+    font-weight:bold;
+    text-decoration:none;
+    border:none;
+    border-radius:25px;
+}
+    nav a:hover { 
+        background:#f0f; 
+        color:white;
+    }
+
+
+/**
+* Typography
+*
+*/
+
+p {
+    line-height:1.5em;
+}
+
+
+
+

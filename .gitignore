@@ -1,0 +1,17 @@
+# OS generated files #
+######################
+
+# OSX
+.DS_Store
+
+# Thumbnails
+._*
+
+
+# Misc #
+######################
+
+# textmate project
+*.tmproj
+
+*.bak
