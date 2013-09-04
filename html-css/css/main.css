@@ -8,17 +8,19 @@
 
 
 body { 
-    margin:0; padding:0;
-    padding-top:3em; 
+    font-size:100%;  /* 12px */
+    padding-top:3em; /* 36px */
     }
 
 
 section { 
-    margin:1em 20px; 
+    margin-top:1em;
+    margin:1em 20px 1em 20px; /* clockwise: top right bottom left */ 
     }
 
 header h1 {
-    margin:1em 20px;
+    margin:1em 20px; /* clockwise: top right ... repeat: bottom left */ 
+    font-size:1.5em; /* 16px */
     }
 
 
@@ -28,13 +30,21 @@ header h1 {
 */
 
 nav {
+    position:fixed;
+    top:0;
     padding:.5em 20px;
+    background:#eee;
+    background:rgb(238,238,238);
     background:rgba(238,238,238,0.7);
     width:100%;
+    box-shadow: 0px 5px 5px #000;
+    height:1em; overflow:hidden;  
+    transition:height 1s;  
 }
     nav:hover { height:3em; }
 
 nav a { 
+    display:inline-block;
     background:rgba(203,203,203,0.7);
     padding:.5em 10px;
     margin:2px 0;
@@ -43,11 +53,23 @@ nav a {
     text-decoration:none;
     border:none;
     border-radius:25px;
+    transition-property: width, height, transform, background, font-size, opacity;
+    transition-duration: 1s, 1s, 1s, 5s, 1s, 1s;
 }
+
     nav a:hover { 
+        background: none repeat scroll 0% 0% rgb(30, 199, 230);
         background:#f0f; 
         color:white;
+        
+        transform: rotate(360deg);
+        opacity: 1;
+        width: 90px;
+        height: 60px;
+        font-size: 30px;
+        
     }
+
 
 
 /**
@@ -60,5 +82,120 @@ p {
 }
 
 
+/**
+* Responsive
+*
+*/
+
+section.main { 
+    width:500px; 
+    width:67%; 
+    float:left;
+    }
+    
+.sidebar { 
+    float:right;
+    width:200px; 
+    width:28%; 
+    margin-left:2%;
+    padding:0 2%; /* clockwise: top right bottom left */
+    
+    clear:both;
+    }
+    
+/*class="clearfix"*/
+
+/*.clearfix {}*/
+
+
+@media only screen and (min-width: 250px) { 
+    body { 
+        color:rgba(234,234,234,0.250); 
+        background:rgba(51,51,51,0.250); 
+        } 
+    
+           
+    
+    } /* END min @250px */
+
+@media only screen and (max-width: 300px) { /* max-width vs min-width */
+    body { 
+        color:rgba(234,234,234,0.300); background:rgba(51,51,51,0.300); 
+        /* padding-top:6em; */
+        } 
+    
+    
+    /* nav { 
+        background:black; 
+        }*/
+}
+@media only screen and (min-width: 350px) { body { color:rgba(234,234,234,0.350); background:rgba(51,51,51,0.350); } }
+@media only screen and (min-width: 400px) { body { color:rgba(234,234,234,0.400); background:rgba(51,51,51,0.400); } }
+@media only screen and (min-width: 450px) { body { color:rgba(234,234,234,0.450); background:rgba(51,51,51,0.450); } }
+@media only screen and (min-width: 500px) { body { color:rgba(234,234,234,0.500); background:rgba(51,51,51,0.500); } }
+@media only screen and (min-width: 550px) { body { color:rgba(234,234,234,0.550); background:rgba(51,51,51,0.550); } }
+@media only screen and (min-width: 600px) { body { color:rgba(234,234,234,0.600); background:rgba(51,51,51,0.600); } }
+@media only screen and (min-width: 650px) { body { color:rgba(234,234,234,0.650); background:rgba(51,51,51,0.650); } }
+@media only screen and (min-width: 700px) { body { font-size:150%; color:rgba(234,234,234,0.700); background:rgba(51,51,51,0.700); } }
+@media only screen and (min-width: 750px) { body { color:rgba(234,234,234,0.750); background:rgba(51,51,51,0.750); } }
+@media only screen and (min-width: 800px) { body { color:rgba(234,234,234,0.800); background:rgba(51,51,51,0.800); } }
+
+
+
+
+img {
+    margin:10px;
+    border:5px solid white;
+    border-radius: 5px; 
+    box-shadow:1px 1px 17px rgba(0,0,0,0.5);
+    max-width:100%; /* set width on containing element */
+    padding:10px;
+    background:lime;
+}
+
+section { 
+    margin:1em 10%; /* clockwise: top right ... repeat: bottom left */ 
+    }
+
+
+
+/*
+* Tonka
+*
+*/
+
+
+
+
+
+p {
+    background: url('../img/tonka.jpg') no-repeat top left;
+    background: url('../img/tonka.jpg') no-repeat fixed top left;
+}
+
+
+img#tonka { 
+    opacity:0; 
+    display:none;
+    transition:opacity 5s;  
+    }
+    @media only screen and (min-width: 650px) {  
+        img#tonka { opacity:1; } 
+    }
+
+
+/*
+
+change:
+    color
+    position
+    size
+    fonts & style
+    opacity
+    borders, padding, margin
+    transforms & speed
+    ...
+
+*/
 
 
