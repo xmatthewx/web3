@@ -1,0 +1,59 @@
+
+body { 
+    text-align:center;
+    background:#eee;
+    margin:0; padding:0;
+    }
+
+form { 
+    margin:20px; 
+    }
+
+#output {
+    position:fixed;
+    bottom:0;
+    padding:.25 0;
+    width:100%;
+    background:black;
+    color:white;
+    font-size:2em;
+    font-family:'Courier New',Courier,monospace;
+    transition:opacity 2s;  
+}
+
+img {
+    border:3px solid aqua;
+    }
+
+.fancy {
+    border-radius:50%;
+    box-shadow:1px 1px 7px rgba(0,0,0,0.5);
+    transform:rotate(7deg);
+    -ms-transform:rotate(7deg); /* IE 9 */
+    -webkit-transform:rotate(7deg); /* Safari and Chrome */    
+    transition:opacity 2s;      
+}
+
+#things {
+    position:relative; /* Note: z-index only works on positioned elements (absolute, fixed, or the explicitly stated default: relative). */
+    z-index:101; /* place it above other elements/layers */
+    background:rgba(0,0,0,0.2);
+    padding:1px;
+    width:160px;
+    margin:-20px auto 0;
+    border:black 1px dotted;
+}
+
+.thing {
+    display:inline-block;
+    height:20px; width:20px;
+    margin:10px;
+    background:CornflowerBlue;
+    color:white;
+    line-height:20px;
+}
+
+.thing:hover{ 
+    cursor:pointer; 
+    background:black; 
+}
