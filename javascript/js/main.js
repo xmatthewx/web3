@@ -13,7 +13,7 @@ console.log(hello);
 console.log('**** the DOM *****')
 
 var id = 'output';
-// document.getElementById(id).innerHTML= hello + '!';
+document.getElementById(id).innerHTML= hello + '!';
     // note: object.function().attribute
 
 
@@ -24,7 +24,11 @@ var id = 'output';
  *
  */
 
-
+id = 'output';
+var output = document.getElementById(id);
+output.innerHTML = 'goodbye';
+console.log('output...........');
+console.log(output);
 
 
 
@@ -34,6 +38,11 @@ var id = 'output';
  *
  */
 
+  // <img id ="cat" ... >
+ var cat = document.getElementById("cat");
+
+     // html is an object
+ console.log(cat.src);
 
 
 
@@ -45,8 +54,17 @@ var id = 'output';
  *
  */
 
+ console.log(cat.alt);
 
+ cat.alt = 'hello kitty';
 
+ output.somestuff = cat.alt; 
+     // this var is also an object
+     // remember... output = document.getElementById(id);
+     // no need to define somestuff
+
+ output.innerHTML = output.somestuff;
+ // outputText(output.somestuff);
 
 
 
@@ -57,8 +75,10 @@ var id = 'output';
  *
  */
 
+console.log('width: ',window.innerWidth);
+console.log('useragent: ',navigator.userAgent);
 
-
+// cat.style.height = "456px";
 
 
 
@@ -77,6 +97,14 @@ var id = 'output';
  *
  */
 
+     // define the function
+function changeOutput() {
+
+     output.innerHTML = 'kitty says hello & goodbye';
+
+}
+
+changeOutput(); // run the function
 
 
 
@@ -90,6 +118,19 @@ var id = 'output';
  *
  */
 
+function catDog() {
+     cat.oldsrc = cat.src;
+     cat.src = 'http://placedog.com/g/200/300';
+ };
+
+// event listener
+cat.onclick = function(){ 
+     console.log('cat clicked');
+     catDog(); 
+ };
+
+// cat.dataset.hello = 'hi mom'; // dataset stuff shown in html source
+
 
 
 
@@ -101,7 +142,26 @@ var id = 'output';
  *
  */
 
+function catBack(src) {
+     console.log(src);
 
+     // if(!src) {}
+     // if(src == "http://asdf.com/asd/asdf") {}
+     if(src) {
+         cat.src = src;
+         }
+     else {
+         console.log('no dogs here');
+         };
+}
+
+
+cat.onmouseout = function() {
+ console.log('cat hover out');
+
+ catBack(cat.oldsrc);
+
+}
 
 
 
@@ -113,6 +173,12 @@ var id = 'output';
  *
  */
 
+function outputText(text) {
+ output.innerHTML = text;
+ output.style.opacity = '1';
+ // outputFadein();
+ console.log(text);
+}
 
 
 
@@ -123,6 +189,43 @@ var id = 'output';
  * events on classes
  *
  */
+
+
+var things = document.getElementsByClassName('thing');
+console.log('things: ',things);
+console.log(things[1].innerHTML);
+// for (var i = 0; i < things.length; i = i + 1 ) {
+for (var i = 0; i < things.length; i++) {
+
+     // cat.onclick = function(){ ... }
+     // things[0]     // things[1]
+     things[i].addEventListener('click', function() {
+
+         // option A
+         // cat.innerHTML = 'x';
+         // this.innerHTML = 'x';
+
+         // option B
+         thingDo(this);
+
+     }); // return false. prevent click from doing anything else. 
+
+};
+
+ function thingDo(el){
+     console.log('thing clicked');
+     
+     // 'this' was created by the event
+     // represents object that was clicked
+     // object was sent here 
+     // received as 'el' 
+     el.style.background = '#f0f';
+
+     var text = el.innerHTML + ' clicked';
+     outputText(text);
+
+
+ }
 
 
 
@@ -283,10 +386,11 @@ console.log('<, >, <=, >=');
 console.log( 'cat' == 'dog' ); // single equal sign assigns a value to a var
 
 console.log( '1' == 1 ); // == compare across types
-console.log( '1' == true ); 
+console.log( '1' == true ); // returns true
+console.log( '0' == false ); 
 
-console.log( '1' === 1 ); // === strict
-console.log( '1' === true ); 
+console.log( '1' === 1 ); // === strict, return false
+console.log( '1' === true ); // return false
  
 
 

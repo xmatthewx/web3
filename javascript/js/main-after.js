@@ -13,7 +13,8 @@ console.log(hello);
 console.log('**** the DOM *****')
 
 var id = 'output';
-// document.getElementById(id).innerHTML= hello + '!';
+document.getElementById('output').innerHTML= hello + '!';
+document.getElementById(id).innerHTML = hello + '!';
     // note: object.function().attribute
 
 
@@ -23,9 +24,10 @@ var id = 'output';
  * html object as var
  *
  */
-
-// var output = document.getElementById(id);
-// output.innerHTML = 'goodbye';
+id = 'output';
+var output = document.getElementById(id);
+console.log('output: ',output);
+output.innerHTML = 'goodbye';
 
 
 
@@ -35,20 +37,21 @@ var id = 'output';
  * the DOM & CSS
  *
  */
-
+ // <img id ="cat" class=" fancy" alt="..." src="..." ... >
 var cat = document.getElementById("cat");
 
     // html is an object
-console.log(cat.src);
+console.log(cat.alt);
 
 cat.src="http://placedog.com/g/200/280";
-cat.style.borderColor = "#fff";
+cat.style.borderColor = "#f0f";
     // note: 
     // CSS >> border-color
-    // JS  >> borderColor
-    // oye
+    // JS  >> borderColor // camelCase
+    // oye!
 
 cat.className += ' fancy'; 
+cat.className = cat.className + ' fancy'; 
     // += is shorthand to append
     // better to let CSS handle style
     // unless you playing with position etc
@@ -63,14 +66,17 @@ cat.className += ' fancy';
 
 console.log(cat.alt);
 
-// cat.alt = 'hello kitty';
+cat.alt = 'hello kitty';
 
-// output.somestuff = cat.alt; 
+cat.alt2 = 'whatever'; 
+console.log(cat);
+
+output.somestuff = cat.alt; 
     // this var is also an object
     // remember... output = document.getElementById(id);
     // no need to define somestuff
 
-// output.innerHTML = output.somestuff;
+output.innerHTML = output.somestuff;
 
 
 
@@ -105,7 +111,7 @@ function changeOutput() {
 
 }
 
-// changeOutput(); // run the function
+changeOutput(); // run the function
 
 
 /**
@@ -116,6 +122,7 @@ function changeOutput() {
  */
 
 function catDog() {
+    console.log('hi dogz');
     cat.oldsrc = cat.src;
     cat.src = 'http://placekitten.com/g/200/300';
 };
@@ -137,12 +144,12 @@ cat.onclick = function(){
 function catBack(src) {
     // console.log(src);
 
-    if(src) {
+    if(src) { // is source empty?
         cat.src = src;
-        }
-    else {
+        
+    } else {
         console.log('no dogs here');
-        };
+    };
 };
 
 
@@ -176,13 +183,15 @@ var things = document.getElementsByClassName('thing');
 
 for (var i = 0; i < things.length; i++) {
 
+    // things[i].onclick = function() { };
     things[i].addEventListener('click', function() {
 
         // option A
-        this.innerHTML = 'x';
+        // this.innerHTML = 'x';
         
         // option B
-        // thingDo(this);
+
+        thingDo(this);
 
     }); // return false. prevent click from doing anything else. 
 
@@ -273,12 +282,13 @@ function catBlink(){
 
 document.onkeydown = function(event){ 
     // console.log(event);
-    
+
     var key = event.keyCode;
     // console.log(key);
-    
+
+    // q
     if( key == 81 ) { outputText('Quit?'); }
-    
+
 }
 
 
@@ -303,7 +313,7 @@ console.log(b);
 c = b + a;
 c += 1;
 
-console.log('c',c);
+console.log('c: ',c);
 
 
 console.log(b / c); 
@@ -316,6 +326,7 @@ console.log(b / c);
  * http://www.w3schools.com/jsref/jsref_obj_math.asp
  *
  */
+ 
 
 var roundint = Math.round(346.974)
 console.log('rounded: ',roundint); 
@@ -351,14 +362,16 @@ console.log('greeting: ', greeting);
  *
  */
 
-greeting = greeting.replace("hi", "goodbye"); // double quotes?? html.
+greeting = greeting.replace("hi", "<b>goodbye</b>"); // double quotes?? html.
+greeting = greeting.toUpperCase();
 console.log('greeting: ', greeting);
-console.log('length: ',greeting.length);
+console.log('length: ',greeting.length );
 
 
 
 var kafka = "One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked. What's happened to me? he thought. It wasn't a dream. His room, a proper human room although a little too small, lay peacefully between its four familiar walls. A collection of textile samples lay spread out on the table - Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame. It showed a lady fitted out with a fur hat and fur boa who sat upright, raising a heavy fur muff that covered the whole of her lower arm towards the viewer. Gregor";
 kafka = kafka.split(' '); // split string at space to create array
+console.log(kafka[14]);
 kafka = kafka.sort(); // sort array
 console.log(kafka);
 kafka = kafka.toString(); // make it a string
@@ -374,7 +387,7 @@ kafka = kafka.toString(); // make it a string
 
 var test1 = "3" + 4 + 5,
     test2 = 3 + 4 + "5";
-    test3 = 3 + 4 + parseInt('5');
+var test3 = 3 + 4 + parseInt('5');
     
 
 console.log('test: ' + test1,test2,test3);
@@ -412,6 +425,7 @@ console.log('*** arrays, yay! ***');
 
 var animals = ['cow', 'chicken', 'duck'];
 animals.push('lamb');
+animals[99] = 'sheepdog';
 
 console.log(animals);
 console.log(animals.length);
@@ -424,6 +438,7 @@ console.log(farm);
 console.log(farm.length);
 console.log(farm[1]);
 console.log(farm[1][1]);
+console.log(farm[0][2]); // g? what???!!!!
 
 
 
