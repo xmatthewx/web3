@@ -10,6 +10,10 @@
 body { 
     font-size:100%;  /* 12px */
     padding-top:3em; /* 36px */
+    
+    transition:background-color 1s;  
+    
+    
     }
 
 
@@ -30,7 +34,8 @@ header h1 {
 */
 
 nav {
-    position:fixed;
+    position:fixed; /* absolute, fixed, relative, */
+    display:block; /* inline-block, inline, none, ... */
     top:0;
     padding:.5em 20px;
     background:#eee;
@@ -41,7 +46,8 @@ nav {
     height:1em; overflow:hidden;  
     transition:height 1s;  
 }
-    nav:hover { height:3em; }
+
+nav:hover { height:3em; }
 
 nav a { 
     display:inline-block;
@@ -136,7 +142,9 @@ section.main {
 @media only screen and (min-width: 550px) { body { color:rgba(234,234,234,0.550); background:rgba(51,51,51,0.550); } }
 @media only screen and (min-width: 600px) { body { color:rgba(234,234,234,0.600); background:rgba(51,51,51,0.600); } }
 @media only screen and (min-width: 650px) { body { color:rgba(234,234,234,0.650); background:rgba(51,51,51,0.650); } }
-@media only screen and (min-width: 700px) { body { font-size:150%; color:rgba(234,234,234,0.700); background:rgba(51,51,51,0.700); } }
+@media only screen and (min-width: 700px) {
+     body {  font-size:150%; color:rgba(234,234,234,0.700); background:rgba(51,51,51,0.700); } 
+}
 @media only screen and (min-width: 750px) { body { color:rgba(234,234,234,0.750); background:rgba(51,51,51,0.750); } }
 @media only screen and (min-width: 800px) { body { color:rgba(234,234,234,0.800); background:rgba(51,51,51,0.800); } }
 
@@ -176,7 +184,7 @@ p {
 
 img#tonka { 
     opacity:0; 
-    display:none;
+    /*display:none;*/
     transition:opacity 5s;  
     }
     @media only screen and (min-width: 650px) {  
