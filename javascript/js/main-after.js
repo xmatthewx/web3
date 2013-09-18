@@ -449,8 +449,9 @@ console.log(farm[0][2]); // g? what???!!!!
 
 
 
-/*
-myNameSpace = function(){
+elephant.init;
+
+elephant = function(){
   var current = null;
   function init(){ }
   function change(){ }
@@ -460,6 +461,7 @@ myNameSpace = function(){
     change:change
   }
 }(); 
+
 // */
 
 
