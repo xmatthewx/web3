@@ -3,7 +3,7 @@
  * setup dots
  */
 
-var count = 12;
+var count = 1200;
 
 //var dot = document.getElementById('dotTemplate'); // js
 var dot = $('#dotTemplate'); // jquery
@@ -67,7 +67,6 @@ function dotsInit(count,callback){
 function dotsAppend(){
     // console.log('append');
     $('#dotTemplate').remove();
-    $('#dot-canvas').append('hello mom'); // jquery
     $('#dot-canvas').append(dots); // jquery
     
     // add event listener
