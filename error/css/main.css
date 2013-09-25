@@ -1,0 +1,7 @@
+
+
+
+section#one .pop {
+    z-index:1001; /* will only go in front of things in section#one */
+    width:25 px; /* space breaks width */
+}
