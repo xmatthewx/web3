@@ -1,5 +1,36 @@
 
+/**
+ * nav
+ */
 
+body {
+    /* bump down other content that fall behind the nav with position:fixed */
+    padding-top:2.5em; 
+}
+
+header nav { 
+    position:fixed; 
+    top:0; left:0; right:0;
+}
+
+header nav a {
+    float:left;
+    width:40%;
+    padding:.5em 5%;
+    color:white;
+    background:black;
+    text-align:center;
+    text-decoration:none;
+    border-bottom:4px solid transparent;
+}
+
+header nav a:hover { 
+    background:rgba(255,0,255,0.5) 
+}
+
+header nav a.active {
+    border-color:rgba(255,0,255,0.5) 
+}
 
 /**
  * form
