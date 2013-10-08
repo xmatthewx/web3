@@ -1,4 +1,6 @@
 
+
+
 /**
  * form
  */
@@ -37,7 +39,7 @@ article {
     padding:1em 0;
     border-top:1px dashed #333;
 }
-
+    
 .home article {
     float:left;
     width:44%; margin-right:5%;
@@ -45,6 +47,10 @@ article {
 
 article:hover {
     background:#fff;
+}
+
+article.active {
+    color:#f0f;
 }
     
     
