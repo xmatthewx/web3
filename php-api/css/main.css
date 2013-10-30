@@ -61,14 +61,18 @@ textarea {
    ========================================================================== */
 
 
+body { 
+    background:#333; 
+    }
+
+section { 
+    width:500px; margin:1em auto; background:#fff; min-height:300px; padding:1em;  
+    }
 
 
-
-
-
-
-
-
+img { 
+    width:150px; 
+    }
 
 
 

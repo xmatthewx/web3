@@ -14,11 +14,6 @@
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
 
-    <body class="<?php echo $class; ?>">
-        <header>
-            <nav>
-                <a href="index.php">Home</a>
-                <a href="post.php">Post</a>
-            </nav>
-        </header>
+    <body class="">
+
         
