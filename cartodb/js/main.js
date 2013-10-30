@@ -1,5 +1,6 @@
 /**
  * defaults for testing
+ * but you could grab values from a form
  */ 
 
 var name = 'xyz',
@@ -7,7 +8,6 @@ var name = 'xyz',
     notice = 'note posted to carto';
 
 
-var cat = $('form#serious').find('input.cat').val();
 
 /**
  * page nav
@@ -156,7 +156,7 @@ function update_carto(sql,msg){
     .success(function(response) { 
         console.log('update_carto success');
         console.log(response);
-        
+
             feedback(msg);
     })
     .error(function() { 
@@ -216,7 +216,6 @@ function queryCarto(sql_statement){
         // write notes
         $.each(data.features, function(key, val) { // geojson
 
-
             // console.log(data.features[0].properties.description);
             // console.log(OBJECT.properties.description);
             var note = val.properties;
@@ -231,6 +230,8 @@ function queryCarto(sql_statement){
                 
             template.find('em').text(note.name);
             template.find('span').text(note.cartodb_id);
+            
+            // add a column in cartodb with src urls for imgs
             template.find('img').attr('src',note.img);
 
             output.push(template); // gather for append below
