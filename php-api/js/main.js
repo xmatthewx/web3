@@ -8,8 +8,8 @@
 function loadData(choice) {
     console.log('loadData...');
     
-    // point to our api
-    var url = '/web3class/php-api/getdata.php?foo=' + choice;
+    // point to your api
+    var url = '/web3class/php-api/getdata.php'  + '?' + 'foo=' + choice;
 
     $.getJSON(url, function (data) {
         console.log(data);
