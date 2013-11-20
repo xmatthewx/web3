@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <!-- 
+	    by Chris Henrick
+	    https://github.com/clhenrick/
+	    -->
+		<title>Wunderground API fun</title>
+		<style type="text/css">
+
+			html, body {
+				background: white;
+				margin: 0px;
+			}
+
+			#container {
+				width: 100%;
+				height: 100%;
+			}
+
+			h1 {
+				text-align: center;
+				letter-spacing: 2px;
+				font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+				font-size: 1.8em;
+				font-style: italic;
+				font-weight: bold;
+			}
+
+			.tilde {
+				position: relative;
+				top: .5em;
+			}
+
+			ul {
+				list-style-type: none;
+				position: relative;
+				display: block;
+			}
+
+			li {
+				position: relative;
+				display: inline;
+				float: left;
+				padding: 2%;
+x			}
+
+			li p.title {
+				text-align: center;
+				font-family: Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+				font-size: 1em;
+				font-weight: bold;
+			}
+
+			li p#desc {
+				text-align: left;
+				font-family: Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+				font-size: 1em;
+				font-style: italic;
+				width: 100%;
+			}
+
+			#footer {
+				clear: both;
+				text-align: center;
+				font-family: Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+				font-size: .8em;
+
+			}
+
+			#footer a:link {
+				text-decoration: none;
+				font-style: italic;
+			}
+
+			#footer a:visited {
+				text-decoration: none;
+				font-style: italic;
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<section id="container">
+			<h1><span class="tilde">~</span>Weather in my favorite cities<span class="tilde">~</span></h1>
+
+			<ul id ="city_list">
+			</ul>
+			
+			<p id="footer">Data sourced from <a href="http://www.wunderground.com/">Weather Underground</a></p>
+
+
+		</section>
+		
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
+		<script>
+			$(document).ready(function (){
+				console.log("we're ready!");
+			}) 
+
+			var apiKey = '3c713ee529c6b167';
+			var feature1 = 'satellite';
+			var feature2 = 'forecast';
+			var feature3 = 'conditions';
+			var geo = {
+				'NY' : 'New_York',
+				'CA' : 'San_Francisco',
+				'MI' : 'Detroit',
+				'Germany' : 'Berlin',
+				'FL' : 'Miami',
+				'OR' : 'Portland',
+				'WA' : 'Seattle',
+				'Argentina' : 'Buenos_Aires',
+				'WI' : 'Madison',
+				'TX' : 'Houston',
+				'LA' : 'New_Orleans',
+				'ND' : 'Fargo'
+			}
+
+			admin = [],
+			cities = [];
+
+			for (property in geo) {
+				makeCity('3c713ee529c6b167', feature1, feature2, feature3, property, geo[property], $('#city_list') );				
+			}
+
+
+
+			function makeCity(apiKey, feature1, feature2, feature3, geog1, geog2, ul){
+				var url = 'http://api.wunderground.com/api/' + apiKey + '/' + feature1 + '/' + feature2 + '/' + feature3 + '/q/' + 
+							geog1 + '/' + geog2 + '.json';
+
+				$.ajax({
+
+					//api key: 3c713ee529c6b167
+					url: url,
+					dataType: 'jsonp',
+					success: function(parsed_json) {
+						//console.log(parsed_json);
+						//console.log(parsed_json['forecast']['simpleforecast']['forecastday'][0])
+
+						var satImg = parsed_json['satellite']['image_url'];
+						var temp = parsed_json['current_observation']['temp_f'];
+						var feels = parsed_json['current_observation']['feelslike_string'];
+						var weather = parsed_json['current_observation']['weather'];
+						var wind = parsed_json['current_observation']['wind_string'];
+						var high = parsed_json['forecast']['simpleforecast']['forecastday'][0]['high']['fahrenheit'];
+						var low = parsed_json['forecast']['simpleforecast']['forecastday'][0]['low']['fahrenheit'];
+
+						li = $('<li></li>');
+
+						li.append('<p class="title">' + geog2 + "</p>")
+						li.append('<img src=' + satImg + '/>');
+						li.append('<p id="desc"> current weather: ' + weather + '</p>');
+						li.append('<p id="desc"> temperature: ' + temp + '</p>');
+						li.append('<p id="desc"> feels like: ' + feels + '</p>');
+						li.append('<p id="desc"> wind: ' + wind + '</p>');
+						li.append('<p id="desc"> high: ' + high + '</p>');
+						li.append('<p id="desc"> low: ' + low + '</p>');
+
+						ul.append(li);
+
+						console.log("satellite image url: " + satImg);
+
+						console.log(parsed_json)
+					
+					}
+
+				})
+				
+			}
+
+			/* original ajax call....
+			$.ajax({
+
+					//api key: 3c713ee529c6b167
+					url: "http://api.wunderground.com/api/5af61751ba97e27f/satellite/forecast/conditions/q/NY/New_York.json",
+					dataType: 'jsonp',
+					success: function(parsed_json) {
+
+						console.log(parsed_json['forecast']['simpleforecast']['forecastday'][0])
+
+						var satImg = parsed_json['satellite']['image_url'];
+						var temp = parsed_json['current_observation']['temp_f'];
+						var feels = parsed_json['current_observation']['feelslike_string'];
+						var weather = parsed_json['current_observation']['weather'];
+						var wind = parsed_json['current_observation']['wind_string'];
+						var high = parsed_json['forecast']['simpleforecast']['forecastday'][0]['high']['fahrenheit'];
+						var low = parsed_json['forecast']['simpleforecast']['forecastday'][0]['low']['fahrenheit'];
+
+						$('#ny-satellite').append('<img src=' + satImg + '/>');
+						$('#ny-satellite').append('<p id="desc"> current weather: ' + weather + '</p>');
+						$('#ny-satellite').append('<p id="desc"> temperature: ' + temp + '</p>');
+						$('#ny-satellite').append('<p id="desc"> feels like: ' + feels + '</p>');
+						$('#ny-satellite').append('<p id="desc"> wind: ' + wind + '</p>');
+						$('#ny-satellite').append('<p id="desc"> high: ' + high + '</p>');
+						$('#ny-satellite').append('<p id="desc"> low: ' + low + '</p>');
+
+
+						console.log("satellite image url: " + satImg);
+
+						console.log(parsed_json)
+				
+					}
+			})
+			*/
+
+		</script>
+	</body>
+</html>
